@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontend</title>
+    <style>
+       h1{
+           text-align: center;
+       }
+       body{
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(1,auto);
+            gap: 20px;
+            width: 80%;
+            margin: auto;   
+        }
+        #box{
+            text-align: center;
+            width: 100%;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 10px;
+        }
+        #box+img{
+            width: 100%;
+        }
+        img+h2{
+        font-weight: 500;
+         margin-top: 7px;
+        }
+        h2+p{
+            margin-top: -10px;
+            font-size: 14px;
+            color: #666d75;
+        }
+        h2+p+img{
+            width: 45%;
+            margin: auto;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+   <h1>frontend</h1> 
+   <div id="container">
+
+</div>
+</body>
+</html>
+<script>
+    var myarr=JSON.parse(localStorage.getItem('investorsData'))
+    myarr.forEach(function(ele){
+        var card=document.createElement('div');
+        var image=document.createElement('img');
+        var name=document.createElement('h2');
+        var cname=document.createElement('p');
+        var logo=document.createElement('img');
+        image.setAttribute('src',ele.investorImg);
+        logo.setAttribute('src',ele.companyLogo);
+        name.innerText=ele.investorName;
+        cname.innerText=ele.investorRole;
+        card.append(image,name,cname,logo);
+        card.setAttribute('id','box');
+        document.querySelector('#container').append(card);
+    
+    })
+</script>
